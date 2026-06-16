@@ -5,13 +5,11 @@ import { auth } from "@/auth";
 import { AddToCartForm } from "@/components/add-to-cart-form";
 import { Button } from "@/components/ui/button";
 import { getProductDetail, type ProductDetail } from "@/services/product-service";
+import { formatCurrency } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
+
 
 type ProductDetailPageProps = {
   params: Promise<{
@@ -64,9 +62,7 @@ export default async function ProductDetailPage({ params }: ProductDetailPagePro
               {product.seller.name}
             </p>
             <h1 className="mt-3 text-3xl font-bold text-gray-950">{product.name}</h1>
-            <p className="mt-4 text-2xl font-bold text-orange-600">
-              {currencyFormatter.format(product.price)}
-            </p>
+            <p className="mt-4 text-2xl font-bold text-orange-600">{formatCurrency(product.price)}</p>
             <p className="mt-6 whitespace-pre-wrap text-base leading-7 text-gray-700">
               {product.description}
             </p>

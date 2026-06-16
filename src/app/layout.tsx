@@ -20,7 +20,7 @@ export default function RootLayout({
         <header className="border-b border-gray-200 bg-white">
           <nav className="mx-auto flex min-h-20 max-w-6xl items-center justify-between px-4">
             <Link className="text-xl font-bold text-orange-600" href="/">
-              Marketplace Lite
+              Marketplace Preloved
             </Link>
             <div className="flex items-center gap-5">
               <Link className="text-sm font-medium text-gray-700 hover:text-gray-950" href="/products">

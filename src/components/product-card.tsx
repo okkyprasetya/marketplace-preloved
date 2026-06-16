@@ -1,10 +1,6 @@
 import Link from "next/link";
 import type { ProductListItem } from "@/services/product-service";
-
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
+import { formatCurrency } from "@/lib/utils";
 
 type ProductCardProps = {
   product: ProductListItem;
@@ -30,9 +26,7 @@ export function ProductCard({ product }: ProductCardProps) {
           {product.description}
         </p>
         <div className="mt-4 flex items-end justify-between gap-3">
-          <p className="text-lg font-bold text-orange-600">
-            {currencyFormatter.format(product.price)}
-          </p>
+          <p className="text-lg font-bold text-orange-600">{formatCurrency(product.price)}</p>
           <p className="line-clamp-1 text-right text-xs font-medium text-gray-500">
             {product.seller.name}
           </p>

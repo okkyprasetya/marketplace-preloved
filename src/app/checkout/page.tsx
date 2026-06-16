@@ -4,13 +4,11 @@ import { auth } from "@/auth";
 import { CheckoutButton } from "@/components/checkout-button";
 import { Button } from "@/components/ui/button";
 import { getCart, type CartSummary } from "@/services/cart-service";
+import { formatCurrency } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
+
 
 export default async function CheckoutPage() {
   const session = await auth();
@@ -67,21 +65,17 @@ export default async function CheckoutPage() {
                 <div>
                   <p className="font-semibold text-gray-950">{item.product.name}</p>
                   <p className="mt-1 text-sm text-gray-600">
-                    {item.quantity} x {currencyFormatter.format(item.product.price)}
+                    {item.quantity} x {formatCurrency(item.product.price)}
                   </p>
                 </div>
-                <p className="font-semibold text-gray-950">
-                  {currencyFormatter.format(item.subtotal)}
-                </p>
+                <p className="font-semibold text-gray-950">{formatCurrency(item.subtotal)}</p>
               </div>
             ))}
           </div>
           <div className="mt-6 flex items-center justify-between border-t border-gray-200 pt-6">
             <div>
               <p className="text-sm font-medium text-gray-500">Total</p>
-              <p className="text-2xl font-bold text-orange-600">
-                {currencyFormatter.format(cart.total)}
-              </p>
+              <p className="text-2xl font-bold text-orange-600">{formatCurrency(cart.total)}</p>
             </div>
             <CheckoutButton />
           </div>

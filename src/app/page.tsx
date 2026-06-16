@@ -8,15 +8,11 @@ export default async function HomePage() {
     <main className="mx-auto max-w-6xl px-4 py-12">
       <section className="grid gap-8 rounded-lg border border-gray-200 bg-white p-8 shadow-sm md:grid-cols-[1.3fr_0.7fr]">
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-orange-600">
-            Phase 2 catalog
-          </p>
           <h1 className="mt-3 text-4xl font-bold text-gray-950">
-            A marketplace base with authentication and public product browsing.
+            Lapak barang second
           </h1>
           <p className="mt-4 max-w-2xl text-base leading-7 text-gray-600">
-            Browse products, search the catalog, and open product detail pages while the next phases
-            add seller management, cart, checkout, payment, invoices, and admin tools.
+            Temukan berbagai macam barang second berkualitas di Lapak Barang Second! Harga minimal kualitas maksimal. Jelajahi katalog kami dan temukan penawaran terbaik untuk kebutuhanmu. Mulai belanja sekarang dan dapatkan barang second impianmu dengan harga terjangkau!  
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Link

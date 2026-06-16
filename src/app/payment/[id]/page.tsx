@@ -4,13 +4,11 @@ import { auth } from "@/auth";
 import { PayNowButton } from "@/components/pay-now-button";
 import { Button } from "@/components/ui/button";
 import { getBuyerOrder, type OrderSummary } from "@/services/order-service";
+import { formatCurrency } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
+
 
 type PaymentPageProps = {
   params: Promise<{
@@ -67,9 +65,7 @@ export default async function PaymentPage({ params }: PaymentPageProps) {
             </div>
             <div className="sm:text-right">
               <p className="text-sm font-medium text-gray-500">Amount</p>
-              <p className="mt-1 text-2xl font-bold text-orange-600">
-                {currencyFormatter.format(order.totalAmount)}
-              </p>
+              <p className="mt-1 text-2xl font-bold text-orange-600">{formatCurrency(order.totalAmount)}</p>
             </div>
           </div>
 

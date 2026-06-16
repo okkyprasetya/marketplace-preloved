@@ -7,11 +7,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import type { CartSummary } from "@/services/cart-service";
-
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
+import { formatCurrency } from "@/lib/utils";
 
 type CartItemsProps = {
   cart: CartSummary;
@@ -79,9 +75,7 @@ export function CartItems({ cart }: CartItemsProps) {
                     {item.product.description}
                   </p>
                 </div>
-                <p className="font-semibold text-orange-600">
-                  {currencyFormatter.format(item.product.price)}
-                </p>
+                  <p className="font-semibold text-orange-600">{formatCurrency(item.product.price)}</p>
               </div>
               <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center rounded-md border border-gray-300">
@@ -116,9 +110,7 @@ export function CartItems({ cart }: CartItemsProps) {
                   </Button>
                 </div>
                 <div className="flex items-center gap-4">
-                  <p className="text-sm font-semibold text-gray-950">
-                    Subtotal {currencyFormatter.format(item.subtotal)}
-                  </p>
+                  <p className="text-sm font-semibold text-gray-950">Subtotal {formatCurrency(item.subtotal)}</p>
                   <Button
                     disabled={pendingId === item.id}
                     onClick={() => mutateCartItem(item.id, { method: "DELETE" })}
@@ -144,15 +136,13 @@ export function CartItems({ cart }: CartItemsProps) {
               <span className="text-gray-600">
                 {item.product.name} x {item.quantity}
               </span>
-              <span className="font-semibold text-gray-950">
-                {currencyFormatter.format(item.subtotal)}
-              </span>
+              <span className="font-semibold text-gray-950">{formatCurrency(item.subtotal)}</span>
             </div>
           ))}
         </div>
         <div className="mt-5 flex justify-between border-t border-gray-200 pt-5 text-base font-bold text-gray-950">
           <span>Total</span>
-          <span>{currencyFormatter.format(cart.total)}</span>
+              <span>{formatCurrency(cart.total)}</span>
         </div>
         <Button asChild className="mt-5 w-full">
           <Link href="/checkout">

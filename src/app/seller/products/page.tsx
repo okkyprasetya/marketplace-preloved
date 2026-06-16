@@ -5,13 +5,11 @@ import { auth } from "@/auth";
 import { ProductDeleteButton } from "@/components/product-delete-button";
 import { Button } from "@/components/ui/button";
 import { listSellerProducts, type SellerProduct } from "@/services/product-service";
+import { formatCurrency } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
+
 
 export default async function SellerProductsPage() {
   const session = await auth();
@@ -85,9 +83,7 @@ export default async function SellerProductsPage() {
                     {product.description}
                   </p>
                 </div>
-                <p className="font-semibold text-orange-600">
-                  {currencyFormatter.format(product.price)}
-                </p>
+                <p className="font-semibold text-orange-600">{formatCurrency(product.price)}</p>
                 <div className="flex justify-end gap-2">
                   <Button asChild size="sm" variant="outline">
                     <Link href={`/seller/products/edit/${product.id}`}>

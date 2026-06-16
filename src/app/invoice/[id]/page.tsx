@@ -4,13 +4,11 @@ import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { Button } from "@/components/ui/button";
 import { getBuyerInvoice, type InvoiceDetail } from "@/services/order-service";
+import { formatCurrency } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
-const currencyFormatter = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
+
 
 type InvoicePageProps = {
   params: Promise<{
@@ -103,9 +101,9 @@ export default async function InvoicePage({ params }: InvoicePageProps) {
                 >
                   <span className="font-medium text-gray-950">{item.productName}</span>
                   <span className="text-gray-700">{item.quantity}</span>
-                  <span className="text-gray-700">{currencyFormatter.format(item.price)}</span>
+                  <span className="text-gray-700">{formatCurrency(item.price)}</span>
                   <span className="text-right font-semibold text-gray-950">
-                    {currencyFormatter.format(item.subtotal)}
+                    {formatCurrency(item.subtotal)}
                   </span>
                 </div>
               ))}
@@ -119,9 +117,7 @@ export default async function InvoicePage({ params }: InvoicePageProps) {
             </div>
             <div className="text-right">
               <p className="text-sm font-medium text-gray-500">Total</p>
-              <p className="text-2xl font-bold text-orange-600">
-                {currencyFormatter.format(invoice.totalAmount)}
-              </p>
+              <p className="text-2xl font-bold text-orange-600">{formatCurrency(invoice.totalAmount)}</p>
             </div>
           </div>
 
